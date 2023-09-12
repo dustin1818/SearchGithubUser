@@ -4,6 +4,6 @@
 
 @layer utilities {
   .container__effect {
-    @apply rounded-[1.5rem] shadow-[0px_50px_50px_-25px_rgba(0,0,0,0.10)];
+    @apply shadow-[0px_50px_50px_-25px_rgba(0,0,0,0.10)];
   }
 }

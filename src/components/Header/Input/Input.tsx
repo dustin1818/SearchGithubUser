@@ -6,8 +6,9 @@ export default function Input() {
   return (
     <input
       className={clsx(
-        "container__effect m-auto mt-[2.9rem] block h-[5.8rem] w-[32.7rem] px-[2.4rem] py-[1.8rem] text-[1.8rem] font-normal leading-normal outline-none"
+        "container__effect col-1 row-1 block rounded-l-[1.5rem] border-none px-[2.4rem] text-[1.8rem] font-normal leading-normal outline-none"
       )}
+      placeholder="Search for any IP address or domain"
       type="text"
     />
   );
