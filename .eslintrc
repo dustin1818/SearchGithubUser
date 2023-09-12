@@ -305,7 +305,7 @@
     "sort-imports": "off",
     "spaced-comment": "off",
     "strict": "error",
-    "tailwindcss/no-custom-classname": "error",
+    "tailwindcss/no-custom-classname": "off",
     "unicorn/consistent-function-scoping": "off",
     "unicorn/error-message": "off",
     "unicorn/filename-case": "off",

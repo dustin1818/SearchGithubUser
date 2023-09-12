@@ -16,7 +16,7 @@
     "src/vite-env.d.ts": true,
     "tsconfig.json": true,
     "tsconfig.node.json": true,
-    "vite.config.ts": true
+    "vite.config.ts": false
   },
   "tailwindCSS.rootFontSize": 10
 }
