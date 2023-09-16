@@ -1,16 +1,29 @@
-//tailwind utilities
+/* tailwind utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 // import rubik google fonts
-@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* stylelint-disable-next-line no-invalid-position-at-import-rule */
+@import "https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap";
 
 * {
   font-family: "Rubik", sans-serif;
 }
 
 @layer utilities {
+  .bg-img-desktop {
+    background-image: url("pattern-bg-desktop.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .bg-img-mobile {
+    background-image: url("pattern-bg-mobile.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   .container__effect {
     @apply shadow-[0px_50px_50px_-25px_rgba(0,0,0,0.10)];
   }
