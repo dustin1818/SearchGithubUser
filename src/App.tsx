@@ -9,11 +9,11 @@ import { useState } from "react";
 import { MapContext } from "./context/MapContext";
 
 export default function App() {
+  const [ipAddress, setIpAddress] = useState(0);
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
-
   return (
-    <MapContext.Provider value={{ lat, setLat, long, setLong }}>
+    <MapContext.Provider value={{ lat, setLat, long, setLong, ipAddress, setIpAddress }}>
       <section
         className={clsx(
           "relative grid min-h-screen grid-cols-[1fr] grid-rows-[28rem_1fr]"
