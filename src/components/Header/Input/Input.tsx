@@ -1,8 +1,15 @@
 import clsx from "clsx";
-import type { HTMLAttributes } from "react";
+import { useContext, type HTMLAttributes } from "react";
+import { MapContext } from "../../../context/MapContext";
 
 export type InputProps = HTMLAttributes<HTMLInputElement>;
 export default function Input() {
+  // const { setLong, setLat } = useContext(MapContext)
+
+  const getIpAddress = (e: any) => {
+    console.log(e.target.value);
+  };
+
   return (
     <input
       className={clsx(
@@ -10,6 +17,7 @@ export default function Input() {
       )}
       placeholder="Search for any IP address or domain"
       type="text"
+      onChange={(e) => getIpAddress(e)}
     />
   );
 }
