@@ -56,6 +56,7 @@
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-extraneous-class": "error",
+    "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/no-magic-numbers": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
@@ -193,6 +194,8 @@
     "no-useless-constructor": "error",
     "one-var": "off",
     "prefer-const": "error",
+    "prefer-named-capture-group": "off",
+    "prefer-regex-literals": "off",
     "prettier/prettier": [
       "error",
       {
@@ -292,6 +295,7 @@
     "react/require-default-props": "off",
     "react/self-closing-comp": "off",
     "react/void-dom-elements-no-children": "error",
+    "require-unicode-regexp": "off",
     "semi": [
       "error",
       "always"
@@ -317,6 +321,7 @@
     "unicorn/no-negated-condition": "error",
     "unicorn/no-null": "off",
     "unicorn/no-useless-undefined": "off",
+    "unicorn/numeric-separators-style": "off",
     "unicorn/prefer-at": "error",
     "unicorn/prefer-dom-node-dataset": "error",
     "unicorn/prefer-event-target": "error",

@@ -3,9 +3,9 @@ import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import type { HTMLAttributes } from "react";
-import { useContext, useEffect } from "react";
-import { MapContext } from "../../context/MapContext";
+import { useEffect } from "react";
 
+import useMapContext from "../../hooks/useMapContext";
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -14,9 +14,10 @@ const DefaultIcon = L.icon({
 
 export type MapProps = HTMLAttributes<HTMLDivElement>;
 export default function Maps() {
-  const { long, lat, ipAddress, setIpAddress } = useContext(MapContext)
+  const { state } = useMapContext();
+
   useEffect(() => {
-    const map = L.map("map").setView([lat, long], 13);
+    const map = L.map("map").setView([51.505, -0.09], 13);
     L.tileLayer(
       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
       {
@@ -32,14 +33,16 @@ export default function Maps() {
       }
     ).addTo(map);
     L.Marker.prototype.options.icon = DefaultIcon;
-    const marker = L.marker([lat, long]).addTo(map);
-    marker.bindPopup("<b>IP Address:</b><br>You are here!.").openPopup();
+    const marker = L.marker([state.latitude, state.longitude]).addTo(map);
+    marker
+      .bindPopup(`<b>IP Address: ${state.ipAddress}</b><br>You are here!.`)
+      .openPopup();
 
     return () => {
       map.off();
       map.remove();
     };
-  }, [ipAddress, long, lat]);
+  }, [state.ipAddress, state.latitude, state.longitude]);
 
   return (
     <div className={clsx("z-0 col-1 row-2")}>
