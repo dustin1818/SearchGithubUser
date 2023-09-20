@@ -10,7 +10,7 @@ export default function Info() {
   return (
     <div
       className={clsx(
-        "container__effect shadow-[0px_50px_-25px_rgba(0, 0, 0.10)] absolute inset-x-0 top-10 z-10 mx-auto flex h-[165px] w-full max-w-[1110px] translate-y-[16.7rem] items-start justify-start gap-14 rounded-[1.5rem] bg-white p-[37px] text-[#2C2C2C]"
+        "container__effect shadow-[0px_50px_-25px_rgba(0, 0, 0.10)] absolute inset-x-0 top-10 z-10 mx-auto flex h-[195px] w-full max-w-[1210px] translate-y-[16.7rem] items-start justify-start gap-14 rounded-[1.5rem] bg-white p-[37px] text-[#2C2C2C]"
       )}>
       <div className="flex flex-col gap-3">
         <p className="font-bold uppercase tracking-[1.75px] opacity-[0.5] ">
@@ -42,6 +42,12 @@ export default function Info() {
           ISP
         </p>
         <h2 className="text-[26px] font-bold">{state.isp}</h2>
+      </div>
+      <div className={state.postalCode ? "flex flex-col gap-3" : "hidden"}>
+        <p className="font-bold uppercase tracking-[1.75px] opacity-[0.5] ">
+          Postal Code
+        </p>
+        <h2 className="text-[26px] font-bold">{state.postalCode}</h2>
       </div>
     </div>
   );

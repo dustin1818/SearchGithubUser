@@ -6,6 +6,7 @@ type MapState = {
   city: string;
   ipAddress: string;
   isp: string;
+  postalCode: string;
   latitude: number;
   longitude: number;
   region: string;
@@ -20,6 +21,7 @@ const initialMapState: MapState = {
   longitude: -118.09462,
   region: "California",
   timezone: "-07:00",
+  postalCode: "93220",
 };
 
 const REDUCER_ACTION_TYPE = {
@@ -30,6 +32,7 @@ const REDUCER_ACTION_TYPE = {
   SET_LONGITUDE: "SETLONGITUDE",
   SET_REGION: "SETREGION",
   SET_TIMEZONE: "SETTIMEZONE",
+  SET_POSTALCODE: "SETPOSTALID",
 };
 
 export type ReducerActionType = typeof REDUCER_ACTION_TYPE;
@@ -138,6 +141,10 @@ const reducer = (state: MapState, action: ReducerAction): MapState => {
       return { ...state, timezone: action.payload as string };
     }
 
+    case REDUCER_ACTION_TYPE.SET_POSTALCODE: {
+      return { ...state, postalCode: action.payload as string };
+    }
+
     default: {
       throw new Error("Invalid action type");
     }
@@ -198,6 +205,12 @@ const useMapContext = (initial: MapState) => {
     []
   );
 
+  const setPostalCode = useCallback(
+    (postalid: string) =>
+      dispatch({ payload: postalid, type: REDUCER_ACTION_TYPE.SET_POSTALCODE }),
+    []
+  );
+
   return {
     setCity,
     setIpAddress,
@@ -206,6 +219,7 @@ const useMapContext = (initial: MapState) => {
     setLongitude,
     setRegion,
     setTimezone,
+    setPostalCode,
     state,
   };
 };
@@ -220,6 +234,7 @@ const MapContext = createContext<UseMapContext>({
   setLongitude: () => {},
   setRegion: () => {},
   setTimezone: () => {},
+  setPostalCode: () => {},
   state: initialMapState,
 });
 

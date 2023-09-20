@@ -17,9 +17,12 @@ export default function Input() {
     setLongitude,
     setRegion,
     setTimezone,
+    setPostalCode,
     state,
   } = useMapContext();
+
   const [errors, setErrors] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const api_key = import.meta.env.VITE_GEOIPIFY_API_KEY;
@@ -36,6 +39,7 @@ export default function Input() {
           longitude: location.lng,
           region: location.region,
           timezone: location.timezone,
+          postalCode: location.postalCode,
         };
       })
       .then((data) => {
@@ -45,6 +49,7 @@ export default function Input() {
         setLongitude(data.longitude);
         setRegion(data.region);
         setTimezone(data.timezone);
+        setPostalCode(data.postalCode);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.ipAddress]);
@@ -55,21 +60,31 @@ export default function Input() {
       setErrors("Please enter a value");
     } else {
       setErrors("");
-      setIpAddress(value.trim());
+      setInputValue(value.trim());
+    }
+  };
+
+  const onSubmit = (event: ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (inputValue === "" || 0) {
+      setErrors("Please enter a value");
+    } else {
+      setErrors("");
+      setIpAddress(inputValue.trim());
     }
   };
 
   return (
-    <>
+    <form className="h-full flex" onSubmit={onSubmit}>
       <input
         className={clsx(
-          "container__effect col-1 row-1 block rounded-l-[1.5rem] border-none px-[2.4rem] text-[1.8rem] font-normal leading-normal outline-none"
+          "container__effect col-1 row-1 block rounded-l-[1.5rem] border-none px-[2.4rem] text-[1.8rem] font-normal leading-normal outline-none w-full"
         )}
         placeholder="Search for any IP address or domain"
         type="text"
         onChange={(event) => ipAddressValue(event)}
       />
       {errors ? <p className="mt-5 text-2xl text-red-400">{errors}</p> : null}
-    </>
+    </form>
   );
 }
