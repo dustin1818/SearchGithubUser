@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { ReactElement } from "react";
 import { createContext, useCallback, useReducer } from "react";
 
@@ -19,9 +18,9 @@ const initialMapState: MapState = {
   isp: "Southern California Edison",
   latitude: 34.04915,
   longitude: -118.09462,
-  region: "California",
-  timezone: "-07:00",
   postalCode: "93220",
+  region: "CA",
+  timezone: "-07:00",
 };
 
 const REDUCER_ACTION_TYPE = {
@@ -30,9 +29,9 @@ const REDUCER_ACTION_TYPE = {
   SET_ISP: "SETISP",
   SET_LATITUDE: "SETLATITUDE",
   SET_LONGITUDE: "SETLONGITUDE",
+  SET_POSTALCODE: "SETPOSTALID",
   SET_REGION: "SETREGION",
   SET_TIMEZONE: "SETTIMEZONE",
-  SET_POSTALCODE: "SETPOSTALID",
 };
 
 export type ReducerActionType = typeof REDUCER_ACTION_TYPE;
@@ -62,6 +61,10 @@ const reducer = (state: MapState, action: ReducerAction): MapState => {
 
     case REDUCER_ACTION_TYPE.SET_LONGITUDE: {
       return { ...state, longitude: Number(action.payload) };
+    }
+
+    case REDUCER_ACTION_TYPE.SET_POSTALCODE: {
+      return { ...state, postalCode: action.payload as string };
     }
 
     case REDUCER_ACTION_TYPE.SET_REGION: {
@@ -129,20 +132,14 @@ const reducer = (state: MapState, action: ReducerAction): MapState => {
       // eslint-disable-next-line guard-for-in
       for (const [key, value] of Object.entries(ABBREVIATIONS)) {
         const payload = action.payload as string;
-        if (payload.toLowerCase() === key.toLowerCase()) {
-          console.log(value);
+        if (payload.toLowerCase() === key.toLowerCase())
           return { ...state, region: value };
-        }
       }
       return { ...state, region: action.payload as string };
     }
 
     case REDUCER_ACTION_TYPE.SET_TIMEZONE: {
       return { ...state, timezone: action.payload as string };
-    }
-
-    case REDUCER_ACTION_TYPE.SET_POSTALCODE: {
-      return { ...state, postalCode: action.payload as string };
     }
 
     default: {
@@ -193,6 +190,12 @@ const useMapContext = (initial: MapState) => {
     []
   );
 
+  const setPostalCode = useCallback(
+    (postalid: string) =>
+      dispatch({ payload: postalid, type: REDUCER_ACTION_TYPE.SET_POSTALCODE }),
+    []
+  );
+
   const setRegion = useCallback(
     (region: string) =>
       dispatch({ payload: region, type: REDUCER_ACTION_TYPE.SET_REGION }),
@@ -205,21 +208,15 @@ const useMapContext = (initial: MapState) => {
     []
   );
 
-  const setPostalCode = useCallback(
-    (postalid: string) =>
-      dispatch({ payload: postalid, type: REDUCER_ACTION_TYPE.SET_POSTALCODE }),
-    []
-  );
-
   return {
     setCity,
     setIpAddress,
     setIsp,
     setLatitude,
     setLongitude,
+    setPostalCode,
     setRegion,
     setTimezone,
-    setPostalCode,
     state,
   };
 };
@@ -232,9 +229,9 @@ const MapContext = createContext<UseMapContext>({
   setIsp: () => {},
   setLatitude: () => {},
   setLongitude: () => {},
+  setPostalCode: () => {},
   setRegion: () => {},
   setTimezone: () => {},
-  setPostalCode: () => {},
   state: initialMapState,
 });
 

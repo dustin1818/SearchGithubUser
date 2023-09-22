@@ -15,9 +15,9 @@ export default function Input() {
     setIsp,
     setLatitude,
     setLongitude,
+    setPostalCode,
     setRegion,
     setTimezone,
-    setPostalCode,
     state,
   } = useMapContext();
 
@@ -37,9 +37,9 @@ export default function Input() {
           isp,
           latitude: location.lat,
           longitude: location.lng,
+          postalCode: location.postalCode,
           region: location.region,
           timezone: location.timezone,
-          postalCode: location.postalCode,
         };
       })
       .then((data) => {
@@ -47,9 +47,9 @@ export default function Input() {
         setIsp(data.isp);
         setLatitude(data.latitude);
         setLongitude(data.longitude);
+        setPostalCode(data.postalCode);
         setRegion(data.region);
         setTimezone(data.timezone);
-        setPostalCode(data.postalCode);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.ipAddress]);
@@ -75,10 +75,10 @@ export default function Input() {
   };
 
   return (
-    <form className="h-full flex" onSubmit={onSubmit}>
+    <form className="flex h-full" onSubmit={onSubmit}>
       <input
         className={clsx(
-          "container__effect col-1 row-1 block rounded-l-[1.5rem] border-none px-[2.4rem] text-[1.8rem] font-normal leading-normal outline-none w-full"
+          "container__effect col-1 row-1 block w-full rounded-l-[1.5rem] border-none px-[2.4rem] text-[1.8rem] font-normal leading-normal outline-none"
         )}
         placeholder="Search for any IP address or domain"
         type="text"
