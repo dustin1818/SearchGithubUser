@@ -33,7 +33,7 @@ export default function InfoCard() {
     <div
       className={clsx(
         "container__effect shadow-[0px_50px_-25px_rgba(0, 0, 0.10)] absolute inset-x-0 top-10 z-10 mx-auto grid h-[min-content] w-[calc(100%_-_2.4rem)] max-w-[121rem] translate-y-[16.7rem] grid-cols-[1fr] grid-rows-[4.3rem] gap-y-[2.4rem] rounded-[1.5rem] bg-white px-[2.4rem] py-[2.6rem] text-[#2C2C2C]",
-        "md:grid-cols-[repeat(4,1fr)] md:grid-rows-[1fr]"
+        `md:grid-cols-[repeat(${information.length},1fr)] md:grid-rows-[1fr]`
       )}>
       {information.map((item, index) => {
         if (index === 0)
