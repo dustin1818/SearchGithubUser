@@ -49,7 +49,7 @@ export default function InfoCard() {
           <div
             className={clsx(
               "h-full w-full",
-              "md:grid md:grid-cols-[0.1rem_1fr] md:grid-rows-[1fr]"
+              "md:grid md:grid-cols-[0.1rem_3.2rem_1fr_3.2rem] md:grid-rows-[1fr]"
             )}>
             <div
               className={clsx(
@@ -57,7 +57,10 @@ export default function InfoCard() {
               )}
             />
             <Info
-              className={clsx("h-full w-full", "md:col-2 md:row-1")}
+              className={clsx(
+                "h-full w-full",
+                "md:col-3 md:row-1 md:break-normal"
+              )}
               header={item[0]}
               information={item.slice(1, information.length)}
             />

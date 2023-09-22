@@ -16,7 +16,8 @@ export default function Info({ className, header, information }: InfoProps) {
       </p>
       <h2
         className={clsx(
-          "w-full text-center text-[2rem] font-medium not-italic leading-[2.4rem] tracking-[-0.0179rem] text-[#2C2C2C]"
+          "w-full text-center text-[2rem] font-medium not-italic leading-[2.4rem] tracking-[-0.0179rem] text-[#2C2C2C]",
+          "md:h-auto md:break-normal"
         )}>
         {information.map((item, index) => {
           if (index !== information.length - 1) return `${item}, `;
